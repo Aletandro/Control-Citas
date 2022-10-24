@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const Formulario = () => {
+const Formulario = ({ crearCita }) => {
   //Crear State
   const [cita, setCita] = useState({
     mascota: "",
@@ -10,6 +11,8 @@ const Formulario = () => {
     sintomas: "",
   });
 
+  const [error, setError] = useState(false);
+
   const handledChange = (e) => {
     setCita({
       ...cita,
@@ -17,18 +20,51 @@ const Formulario = () => {
     });
   };
 
-  //Extraer ivalores inputs
+  //Extraer valores inputs
   const { mascota, propietario, fecha, hora, sintomas } = cita;
 
   // Submit Form
 
-  const submitCita = () => {
-    console.log("subiendo");
+  const submitCita = (e) => {
+    e.preventDefault();
+    console.log("submit");
+    //validar cita
+    if (
+      mascota.trim() === "" ||
+      propietario.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === ""
+    ) {
+      setError(true);
+      return;
+    }
+    // eliminar mensaje previousl
+    setError(false);
+    //asignar id
+    cita.id = uuidv4();
+
+    //crear la cita
+    crearCita(cita);
+
+    //reiniciar el form
+    setCita({
+      mascota: "",
+      propietario: "",
+      fecha: "",
+      hora: "",
+      sintomas: "",
+    });
   };
 
   return (
     <>
       <h2>Crear Citas</h2>
+
+      {error ? (
+        <p className="alerta-error">Todos los campos son obligatorios</p>
+      ) : null}
+
       <form onSubmit={submitCita}>
         <label>Nombre Mascota</label>
         <input

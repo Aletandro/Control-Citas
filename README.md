@@ -1,4 +1,4 @@
-# Alejandro Melo Gutierres
+# Alejandro Melo Gutierrez
 
 # Getting Started with Create React App
 

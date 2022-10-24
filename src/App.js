@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Formulario from "./components/Formulario";
 
 function App() {
+  //Arreglo citas
+  const [citas, setCitas] = useState([]);
+
+  // Func Citas Act + nuevas
+
+  const crearCita = (cita) => {
+    setCitas({
+      ...citas,
+      cita,
+    });
+  };
+
   return (
     <>
       <h1>Administrador de Pascientes</h1>
       <div className="container">
         <div className="row">
           <div className="one-half column">
-            <Formulario />
+            <Formulario crearCita={crearCita} />
           </div>
-          <div className="one-half column">2</div>
+          <div className="one-half column"></div>
         </div>
       </div>
     </>
