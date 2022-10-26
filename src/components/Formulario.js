@@ -118,4 +118,8 @@ const Formulario = ({ crearCita }) => {
   );
 };
 
+Formulario.propTypes = {
+  crearCita: PropTypes.func.isRequired,
+};
+
 export default Formulario;

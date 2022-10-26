@@ -30,7 +30,7 @@ const Cita = ({ cita, eliminarCita }) => (
 
 Cita.protoTypes = {
   cita: PropTypes.object.isRequired,
-  eliminarCita: PropTypes.object.isRequired,
+  eliminarCita: PropTypes.func.isRequired,
 };
 
 export default Cita;
